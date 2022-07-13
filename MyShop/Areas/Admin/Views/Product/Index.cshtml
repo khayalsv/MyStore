@@ -1,0 +1,68 @@
+﻿@model IEnumerable<MyShop.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+<br />
+
+
+<h1>Index</h1>
+<br />
+<p>
+    <a href="/Admin/Product/Create" class="btn btn-success">Create New</a>
+</p>
+<br />
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsAvailable)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsAvailable)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Id)
+            </td>
+            <td>
+                <img width="200" height="150" src="~/@item.Image">
+            </td>
+
+            <td>
+                <a href="/Admin/Product/Edit/@item.Id" class="btn btn-warning">Edit</a> |
+                <a href="/Admin/Product/Details/@item.Id" class="btn btn-secondary">Details</a> |
+                <a href="/Admin/Product/Delete/@item.Id" onclick="return confirm('Are you delete?')" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
